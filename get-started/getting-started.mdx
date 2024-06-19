@@ -1,0 +1,144 @@
+---
+title: "Getting Started"
+description: "Introduction and setup instructions. Includes user authentication, data reception, and understanding data."
+---
+Getting Started  
+  
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/getting-started.png)
+
+Setting up  
+  
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/install-on-backend.png)
+
+Authenticate Users  
+  
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/authenticate-users.png)
+
+Getting Data  
+  
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/receive-data.png)
+
+Parsing Data  
+  
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/understand-our-data.png)
+
+API Settings  
+  
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/customise-terra.png)
+
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/manage-integrations.png)  
+  
+Mobile Setup
+
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/api-data-models.png)  
+  
+API
+
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/widget.png)  
+  
+Widget
+
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/historical-data.png)  
+  
+Request
+
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/new-data.png)  
+  
+Receive
+
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/event-types.png)  
+  
+Events
+
+![](https://terradocs.s3.eu-west-2.amazonaws.com/icons/api-data-models.png)  
+  
+Data Models
+
+## Your Terra credentials
+
+Head to the [Terra dashboard](https://dashboard.tryterra.co)
+. Under **Connections**, you will find your API Key and Dev ID in the bottom right corner. They are used in virtually every interaction with the API - **keep them safe!**
+
+![](https://files.readme.io/88cadbf-image.png)
+
+## Choose your language
+
+You can interact with the API using one of the following options:
+
+Python JavaScript Java Ruby HTTP Requests Postman
+
+## Installation
+
+Install the Python Client using pip:
+
+```shell
+pip install terra-python
+
+```
+
+## Initialise the Terra Object
+
+You can now import the `Terra` class and initialise an instance using your developer credentials.
+
+```python
+# Importing the API and instantiating the client using your keys
+from terra.base_client import Terra
+
+API_KEY = "<Your API Key>"
+DEV_ID = "<Your Dev Id>"
+SECRET = "<Your Signing secret>"
+
+
+terra = Terra(API_KEY, DEV_ID, SECRET)
+
+```
+
+You will now be able access Terra's API endpoints through the `Terra` object.
+
+## Listing Providers and Users
+
+To start off, let's view the most up-to-date list of all data providers through Terra. Use the `list_providers`method on `terra` to get an API response, and optionally parse it into a `ProvidersResponse` object.
+
+```python
+parsed_api_response = terra.list_providers().get_parsed_response()
+print(parsed_api_response)
+
+```
+
+You should see the following output:
+
+```
+ProvidersResponse(
+  status='success', 
+  providers=['BIOSTRAP', 'CARDIOMOOD', 'CONCEPT2', 'COROS', 'CRONOMETER', 'DEXCOM', 'EATTHISMUCH', 'EIGHT', 'FATSECRET', 'FINALSURGE', 'FITBIT', 'FREESTYLELIBRE', 'GARMIN', 'GOOGLE', 'HAMMERHEAD', 'HUAWEI', 'IFIT', 'INBODY', 'KOMOOT', 'LIVEROWING', 'LEZYNE', 'MOXY', 'NUTRACHECK', 'OMRON', 'OMRONUS', 'OURA', 'PELOTON', 'POLAR', 'PUL', 'RENPHO', 'RIDEWITHGPS', 'ROUVY', 'SUUNTO', 'TECHNOGYM', 'TEMPO', 'TRIDOT', 'TREDICT', 'TRAININGPEAKS', 'TRAINASONE', 'TRAINERROAD', 'UNDERARMOUR', 'VIRTUAGYM', 'WAHOO', 'WEAROS', 'WHOOP', 'WITHINGS', 'XOSS', 'ZWIFT', 'XERT', 'BRYTONSPORT', 'TODAYSPLAN', 'WGER', 'VELOHERO', 'CYCLINGANALYTICS', 'NOLIO', 'TRAINXHALE', 'KETOMOJOUS', 'KETOMOJOEU', 'STRAVA', 'CLUE', 'HEALTHGAUGE', 'MACROSFIRST'], 
+  sdk_providers=['GOOGLEFIT', 'FREESTYLELIBRESDK', 'APPLE', 'SAMSUNG', 'REALTIME']
+)
+
+```
+
+Similarly, to view a list of users that you have currently authenticated through Terra, use the `list_users` method.
+
+```python
+parsed_api_response = terra.list_users().get_parsed_response()
+print(parsed_api_response)
+
+```
+
+If you haven't authenticated any users yet, you should receive an empty list in your `SubscribedUsers` object:
+
+```
+SubscribedUsers(users=[])
+
+```
+
+For detailed documentation on any of the functions used, checkout the [Python Client Reference](/reference/reference-python-client)
+.
+
+In the [next step](authenticate-users)
+, let's get some users authenticated!
+
+Did this page help you?
+
+Yes
+
+No
